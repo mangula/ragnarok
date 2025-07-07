@@ -39,17 +39,38 @@ function printStrip(){
 	console.log(reelStrips.map(a=>a.join(' ')).join('\n'));
 }
 function renderGrid(){
-	for (;;) {
+	for (;0;) {
 
 	}
 }
 
 
-alfa = "T0AB.png": {
-    "frame": {
-        "x": 550,
-        "y": 765,
-        "w": 185,
-        "h": 50
+const alfa = {
+    "T0AB.png": {
+        "x": 555,
+        "y": 6,
+        "w": 58,
+        "h": 48
     }
 };
+
+image = new Image();
+
+image.src = "skin_texture0_level2.png";
+
+image.addEventListener('load', () => {
+   console.log('%cimage loaded', 'color:red; background:yellow;font-size:2em');
+   
+   ctxGame.drawImage(image, 0,0);
+   ctxGrid.drawImage(image, 555, 6, 58, 48, 0, 0, 58, 48);
+});
+
+
+canvasGame.addEventListener('mousemove', (event) => {
+    //console.log(event.x, event.y)
+    document.getElementById('coord').innerHTML = event.x + ' ' + event.y;
+})
+canvasGame.addEventListener('mousedown', (event) => {
+    //console.log(event.x, event.y)
+    console.log(document.getElementById('coord').innerHTML);
+})
