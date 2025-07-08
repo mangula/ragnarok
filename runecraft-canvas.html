@@ -9,7 +9,7 @@
     left: 517px;
     border: 1px solid lime;
 }
-#canvasGame {
+#canvasGame, #canvasBackground, #canvasUI {
     position: absolute;
     top: 0;
     left: 100px;
@@ -27,9 +27,11 @@ html{
 </style>
 </head>
 <body>
-<canvas id="canvasGame"></canvas>
-<canvas id="canvasGrid"></canvas>
-<script type="text/javascript" src="runecraft-canvas.js"></script>
-<div id=coord></div>
+    <canvas id="canvasBackground"></canvas>
+    <canvas id="canvasGame"></canvas>
+    <canvas id="canvasUI"></canvas>
+    <canvas id="canvasGrid"></canvas>
+    <script type="text/javascript" src="runecraft-canvas.js"></script>
+    <div id=coord></div>
 </body>
 </html>

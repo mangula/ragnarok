@@ -1,5 +1,8 @@
+const canvasBackground = document.getElementById("canvasBackground")
 const canvasGame = document.getElementById("canvasGame");
+const canvasUI = document.getElementById("canvasUI");
 const canvasGrid = document.getElementById("canvasGrid");
+
 const ctxGame = canvasGame.getContext("2d");
 const ctxGrid = canvasGrid.getContext("2d");
 
@@ -9,8 +12,8 @@ const height = 900, width = 1600;
 const zoom = 1.75;
 const rockBlanks = 2;
 const gravity = 3;
-canvasGame.height = height;
-canvasGame.width = width;
+canvasUI.height = canvasBackground.height = canvasGame.height = height;
+canvasUI.width = canvasBackground.width = canvasGame.width = width;
 
 const cellHeight = 60 * zoom;
 const gridWidth = cols * cellHeight;
@@ -18,7 +21,7 @@ const gridHeight = rows * cellHeight;
 canvasGrid.height = gridHeight;
 canvasGrid.width = gridWidth;
 
-const reelStrips = Array(rows * 2 + rockBlanks).fill(1).map(a=>Array(cols).fill(0));
+
 const stripBool = Array(rows * 2 + rockBlanks).fill(1).map(a=>Array(cols).fill(0));
 const symbolsPositionsY = Array(rows * 2 + rockBlanks).fill(1).map(a=>Array(cols).fill(0));;
 
@@ -64,9 +67,15 @@ const alfa = [
 
 const numberOfSymbols = alfa.length;
 
+const reelStrips = Array(rows * 2 + rockBlanks).fill(1).map(a=>Array(cols).fill(numberOfSymbols));
+
+//console.log(reelStrips.map(a=>a.join(' ')).join('\n'));
+
 image = new Image();
 
 image.src = "skin_texture0_level2.png";
+
+
 
 image.addEventListener('load', () => {
    console.log('%cimage loaded', 'color:red; background:yellow;font-size:2em');
@@ -89,6 +98,44 @@ image.addEventListener('load', () => {
           }
    }
 });
+
+const bacgroundImage = new Image();
+
+bacgroundImage.src = "background.jpg";
+bacgroundImage.addEventListener('load', ()=>{
+    canvasBackground.getContext('2d').drawImage(bacgroundImage,0,0, 1279, 720, 0, 0, 1279 * 1.25, 720 * 1.25)
+});
+
+const UIImage1 = new Image();
+UIImage1.src = "skin_texture0_level1.png";
+UIImage1.addEventListener('load', ()=>{
+    canvasUI.getContext('2d').drawImage(UIImage1, 192, 686, 196, 238, 80, 450, 196 * 1.25, 238 * 1.25)
+    canvasUI.getContext('2d').drawImage(UIImage1, 486, 1246, 104, 44, 134, 720, 104 * 1.25, 44 * 1.25);
+    canvasUI.getContext('2d').drawImage(UIImage1, 697, 1246, 104, 44, 138, 425, 104 * 1.25, 44 * 1.25);
+    canvasUI.getContext('2d').drawImage(UIImage1, 600, 390, 210, 90, 1250, 20, 210 * 1.25, 90 * 1.25);
+
+});
+
+const UIImage2 = new Image();
+UIImage2.src = "feature_preview_texture0_level1.png";
+UIImage2.addEventListener('load', ()=>{
+    canvasUI.getContext('2d').drawImage(UIImage2, 0, 320, 260, 300, 95, 165, 260 * 0.8, 300 * 0.8);
+});
+
+const UIImage3 = new Image();
+UIImage3.src = "skin_texture3_level1.png";
+UIImage3.addEventListener('load', ()=>{
+    canvasUI.getContext('2d').drawImage(UIImage3, 700, 0, 195, 120, 85, 20, 195 * 1.25, 103 * 1.25);
+});
+
+const UIImage4 = new Image();
+UIImage4.src = "feature_preview_texture1_level1.png";
+UIImage4.addEventListener('load', ()=>{
+    canvasUI.getContext('2d').drawImage(UIImage4, 290, 557, 270, 560, 1180, 160, 270 * 1.4, 560 * 1.4);
+    canvasUI.getContext('2d').drawImage(UIImage4, 280, 410, 940, 150, 1150, 700, 940 * 1.4, 150 * 1.4);
+});
+
+
 
 function animateSymbol(col, row){
     let velocity = 0;
@@ -120,7 +167,6 @@ canvasGame.addEventListener('mousedown', (event) => {
 
 function setInitSymbolPositionsY(){
     for (let r=0; r<reelStrips.length; r++) {
-        
         for (c=0; c<cols; c++) {
             //const data = alfa[reelStrips[r][c]];
             symbolsPositionsY[r][c] = cellHeight * (r - rows - rockBlanks);
@@ -144,10 +190,11 @@ function drawSymbols(){
     //console.log('drawSymbols');
     //for (let r=rows + rockBlanks; r<reelStrips.length; r++) {
     for (let r=0; r<reelStrips.length; r++) {
-        if (r>=rows && r<rows+rockBlanks) {
-            continue;
-        }
+        
         for (c=0; c<cols; c++) {
+            if (reelStrips[r][c] == numberOfSymbols) {
+                continue;
+            }
             const symbolY = symbolsPositionsY[r][c];
             if (symbolY > cellHeight * (rows * 2 + rockBlanks)) {
                 continue;
