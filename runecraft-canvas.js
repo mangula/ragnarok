@@ -5,9 +5,10 @@ const ctxGrid = canvasGrid.getContext("2d");
 
 const rows = 7;
 const cols = rows;
-const height = 800, width = 1200;
-const zoom = 1.5;
-
+const height = 900, width = 1600;
+const zoom = 1.75;
+const rockBlanks = 2;
+const gravity = 1;
 canvasGame.height = height;
 canvasGame.width = width;
 
@@ -17,7 +18,9 @@ const gridHeight = rows * cellHeight;
 canvasGrid.height = gridHeight;
 canvasGrid.width = gridWidth;
 
-const reelStrips = Array(rows * 2).fill(1).map(a=>Array(cols).fill(0));
+const reelStrips = Array(rows * 2 + rockBlanks).fill(1).map(a=>Array(cols).fill(0));
+
+const symbolsPositionsY = Array(rows * 2 + rockBlanks).fill(1).map(a=>Array(cols).fill(0));;
 
 function addNewSymbols(){
 	for (let r=0; r<rows; r++) {
@@ -30,7 +33,7 @@ function addNewSymbols(){
 function dropSymbols() {
 	for (let r=0; r<rows; r++) {
 		for (let c=0; c<cols; c++) {
-			reelStrips[r + rows][c] = reelStrips[r][c];
+			reelStrips[r + rows + rockBlanks][c] = reelStrips[r][c];
 		}
 	}	
 }
@@ -98,14 +101,88 @@ canvasGame.addEventListener('mousedown', (event) => {
 })
 
 
+function setInitSymbolPositionsY(){
+    for (let r=0; r<reelStrips.length; r++) {
+        
+        for (c=0; c<cols; c++) {
+            //const data = alfa[reelStrips[r][c]];
+            symbolsPositionsY[r][c] = cellHeight * (r - rows - rockBlanks);
+            //ctxGrid.drawImage(image, data.x, data.y, data.w, data.h, cellHeight * c, cellHeight * (r-rows - rockBlanks), data.w * zoom, data.h * zoom);
+        }
+    }
+}
+
+
 function startGame(){
     addNewSymbols();
     dropSymbols();
     addNewSymbols();
-    for (let r=rows; r<reelStrips.length; r++) {
+    setInitSymbolPositionsY();
+    drawSymbols();
+    
+}
+
+function drawSymbols(){
+    ctxGrid.clearRect(0, 0, cols * cellHeight, rows * cellHeight);
+    //console.log('drawSymbols');
+    //for (let r=rows + rockBlanks; r<reelStrips.length; r++) {
+    for (let r=0; r<reelStrips.length; r++) {
+        if (r>=rows && r<rows+rockBlanks) {
+            continue;
+        }
         for (c=0; c<cols; c++) {
+            const symbolY = symbolsPositionsY[r][c];
+            if (symbolY > cellHeight * (rows * 2 + rockBlanks)) {
+                continue;
+            }
+            if (symbolY + cellHeight < 0) {
+                continue;
+            }
             const data = alfa[reelStrips[r][c]];
-            ctxGrid.drawImage(image, data.x, data.y, data.w, data.h, cellHeight * c, cellHeight * (r-rows), data.w * zoom, data.h * zoom);
+            ctxGrid.drawImage(image, data.x, data.y, data.w, data.h, cellHeight * c, symbolY, data.w * zoom, data.h * zoom);
         }
     }
 }
+
+let symbolsDropped = 0
+function animateDrop(){
+    symbolsDropped = 0;
+    
+    for (let c = 0; c < cols; c++) {
+        for(let r = 0; r < rows * 2 + rockBlanks; r++){
+            //setTimeout();
+            animateSymbol(c, r);
+        }
+    }
+    
+    let interval = setInterval(()=>{
+        drawSymbols();
+        if (symbolsDropped == (rows * 2 + rockBlanks) * cols) {
+            clearInterval(interval);
+            console.log('ALL SYMBOLS DROPPED');
+        }
+    }, 33);
+    
+}
+
+function animateSymbol(col, row){
+    let velocity = 0;
+    let limit = cellHeight * (rows + rockBlanks);
+    let interval = setInterval(()=>{
+        velocity += gravity;
+        symbolsPositionsY[row][col] += velocity;
+        
+        //symbolsPositionsY[col][row]
+        limit -= velocity;
+        if (limit <= 0) {
+            symbolsPositionsY[row][col] += limit;
+            clearInterval(interval);
+            symbolsDropped++;
+        };
+        //drawSymbols();
+    }, 33);
+}
+
+setTimeout(()=>{
+    animateDrop();
+},1000);
