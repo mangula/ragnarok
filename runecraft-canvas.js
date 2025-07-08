@@ -177,14 +177,8 @@ function animateSymbol(col, row){
 }
 
 
-canvasUI.addEventListener('mousemove', (event1) => {
-  const event = {x:event1.layerX, y:event1.layerY};
-    document.getElementById('coord').innerHTML = event.x + ' ' + event.y;
-    
-    if(spinning){
-      return;
-    }
-    const dist = ( (event.x - positionSpin.x) ** 2 + (event.y - positionSpin.y)**2)**.5;
+function checkHover(event){
+  const dist = ( (event.x - positionSpin.x) ** 2 + (event.y - positionSpin.y)**2)**.5;
     //console.log(event, event.x, event.y, dist)
     if (dist < 50) {
       //console.log('SPIN');
@@ -196,6 +190,19 @@ canvasUI.addEventListener('mousemove', (event1) => {
       drawSpin();
       spinImageBool = 1;
     }
+}
+
+const cursorPosition = {};
+
+canvasUI.addEventListener('mousemove', (event1) => {
+  const event = {x:event1.layerX, y:event1.layerY};
+    document.getElementById('coord').innerHTML = event.x + ' ' + event.y;
+    cursorPosition.x = event.x;
+    cursorPosition.y = event.y;
+    if(spinning){
+      return;
+    }
+    checkHover(event);
 })
 canvasUI.addEventListener('mousedown', (event) => {
     //console.log(event.x, event.y)
@@ -303,12 +310,13 @@ function animateDrop(){
         drawSymbols();
         if (symbolsDropped == (rows * 2 + rockBlanks) * cols) {
             clearInterval(interval);
-            console.log('ALL SYMBOLS DROPPED');
-            console.log(reelStrips.map(a=>a.join(' ')).join('\n'));
+            //console.log('ALL SYMBOLS DROPPED');
+            //console.log(reelStrips.map(a=>a.join(' ')).join('\n'));
             spinning = 0;
             dropSymbols();
             addNewSymbols();
             setInitSymbolPositionsY();
+            checkHover(cursorPosition);
         }
     }, 33);
     
