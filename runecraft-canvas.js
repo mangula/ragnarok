@@ -8,7 +8,7 @@ const ctxGrid = canvasGrid.getContext("2d");
 
 const rows = 7;
 const cols = rows;
-const height = 900, width = 1600;
+const height = 880, width = 1600;
 const zoom = 1.75;
 const rockBlanks = 2;
 const gravity = 3;
@@ -24,6 +24,8 @@ canvasGrid.width = gridWidth;
 
 const stripBool = Array(rows * 2 + rockBlanks).fill(1).map(a=>Array(cols).fill(0));
 const symbolsPositionsY = Array(rows * 2 + rockBlanks).fill(1).map(a=>Array(cols).fill(0));;
+
+let spinImageBool = 1, spinning = 0;
 
 function addNewSymbols(){
 	for (let r=0; r<rows; r++) {
@@ -50,7 +52,7 @@ function renderGrid(){
 	}
 }
 
-
+const positionSpin = {x:1165 + 100 /2, y:745 + 110/2};
 const alfa = [
     { "x": 552, "y": 0, "w": 60, "h": 60},
     { "x": 552, "y": 62,"w": 60, "h": 60},
@@ -133,8 +135,27 @@ UIImage4.src = "feature_preview_texture1_level1.png";
 UIImage4.addEventListener('load', ()=>{
     canvasUI.getContext('2d').drawImage(UIImage4, 290, 557, 270, 560, 1180, 160, 270 * 1.4, 560 * 1.4);
     canvasUI.getContext('2d').drawImage(UIImage4, 280, 410, 940, 150, 1150, 700, 940 * 1.4, 150 * 1.4);
+    UIImage5.addEventListener('load', ()=>{
+        canvasUI.getContext('2d').drawImage(UIImage5, 0, 115, 1020, 109, 150, 735, 1020 * 1.25, 109 * 1.25);//UI BET
+        drawSpin();
+        //drawHoverSpin();
+        canvasUI.getContext('2d').drawImage(UIImage5, 1060, 0, 70, 75, 1292, 785, 70 * 1.25, 75 * 1.25);//auto button
+        canvasUI.getContext('2d').drawImage(UIImage5, 1210, 0, 70, 75, 182, 785, 70 * 1.25, 75 * 1.25);//info button
+        //canvasUI.getContext('2d').drawImage(UIImage5, 280, 410, 940, 150, 1150, 700, 940 * 1.4, 150 * 1.4);
+    });
 });
 
+const UIImage5 = new Image();
+UIImage5.src = "menu_texture0_level1.png";
+
+
+
+function drawSpin(){
+  canvasUI.getContext('2d').drawImage(UIImage5, 414, 0, 100, 110, 1165, 745, 100 * 1.25, 110 * 1.25);//spin button
+}
+function drawSpinHover(){
+  canvasUI.getContext('2d').drawImage(UIImage5, 518, 0, 100, 110, 1165, 745, 100 * 1.25, 110 * 1.25);//spin button  
+}
 
 
 function animateSymbol(col, row){
@@ -155,13 +176,37 @@ function animateSymbol(col, row){
     }, 33);
 }
 
-canvasGame.addEventListener('mousemove', (event) => {
-    //console.log(event.x, event.y)
+
+canvasUI.addEventListener('mousemove', (event1) => {
+  const event = {x:event1.layerX, y:event1.layerY};
     document.getElementById('coord').innerHTML = event.x + ' ' + event.y;
+    
+    if(spinning){
+      return;
+    }
+    const dist = ( (event.x - positionSpin.x) ** 2 + (event.y - positionSpin.y)**2)**.5;
+    //console.log(event, event.x, event.y, dist)
+    if (dist < 50) {
+      //console.log('SPIN');
+      if (spinImageBool) {
+          drawSpinHover();
+          spinImageBool = 0;
+      }
+    } else if(!spinImageBool){
+      drawSpin();
+      spinImageBool = 1;
+    }
 })
-canvasGame.addEventListener('mousedown', (event) => {
+canvasUI.addEventListener('mousedown', (event) => {
     //console.log(event.x, event.y)
-    console.log(document.getElementById('coord').innerHTML);
+    //console.log(document.getElementById('coord').innerHTML);
+    if (spinning == 0 && spinImageBool == 0) {
+      spinning = 1;
+      spinImageBool = 1;
+      drawSpin();
+      animateDrop();
+      //console.log("SPIN");
+    }
 })
 
 
@@ -218,7 +263,7 @@ function animateSymbolTimeout(row, col, time){
     }, time);
 }
 
-let symbolsDropped = 0
+let symbolsDropped = 0;
 function animateDrop(){
     symbolsDropped = 0;
     
@@ -259,13 +304,14 @@ function animateDrop(){
         if (symbolsDropped == (rows * 2 + rockBlanks) * cols) {
             clearInterval(interval);
             console.log('ALL SYMBOLS DROPPED');
-            console.log(stripBool.map(a=>a.join(' ')).join('\n'));
+            console.log(reelStrips.map(a=>a.join(' ')).join('\n'));
+            spinning = 0;
+            dropSymbols();
+            addNewSymbols();
+            setInitSymbolPositionsY();
         }
     }, 33);
     
 }
 
 
-setTimeout(()=>{
-    animateDrop();
-},1000);
