@@ -111,42 +111,59 @@ bacgroundImage.addEventListener('load', ()=>{
 const UIImage1 = new Image();
 UIImage1.src = "skin_texture0_level1.png";
 UIImage1.addEventListener('load', ()=>{
-    canvasUI.getContext('2d').drawImage(UIImage1, 192, 686, 196, 238, 80, 450, 196 * 1.25, 238 * 1.25)
-    canvasUI.getContext('2d').drawImage(UIImage1, 486, 1246, 104, 44, 134, 720, 104 * 1.25, 44 * 1.25);
-    canvasUI.getContext('2d').drawImage(UIImage1, 697, 1246, 104, 44, 138, 425, 104 * 1.25, 44 * 1.25);
-    canvasUI.getContext('2d').drawImage(UIImage1, 600, 390, 210, 90, 1250, 20, 210 * 1.25, 90 * 1.25);
+    canvasUI.getContext('2d').drawImage(UIImage1, 192, 686, 196, 238, 80, 450 - 30, 196 * 1.25, 238 * 1.25);//history
+    canvasUI.getContext('2d').drawImage(UIImage1, 486, 1246, 104, 44, 134, 720 - 30, 104 * 1.25, 44 * 1.25);//down
+    canvasUI.getContext('2d').drawImage(UIImage1, 697, 1246, 104, 44, 138, 425 - 30, 104 * 1.25, 44 * 1.25);//up
+    canvasUI.getContext('2d').drawImage(UIImage1, 600, 390, 210, 90, 1250, 20, 210 * 1.25, 90 * 1.25);//logo
 
 });
 
 const UIImage2 = new Image();
 UIImage2.src = "feature_preview_texture0_level1.png";
 UIImage2.addEventListener('load', ()=>{
-    canvasUI.getContext('2d').drawImage(UIImage2, 0, 320, 260, 300, 95, 165, 260 * 0.8, 300 * 0.8);
+    canvasUI.getContext('2d').drawImage(UIImage2, 0, 320, 260, 300, 95, 140, 260 * 0.8, 300 * 0.8);//circle
 });
 
 const UIImage3 = new Image();
 UIImage3.src = "skin_texture3_level1.png";
 UIImage3.addEventListener('load', ()=>{
-    canvasUI.getContext('2d').drawImage(UIImage3, 700, 0, 195, 120, 85, 20, 195 * 1.25, 103 * 1.25);
+    canvasUI.getContext('2d').drawImage(UIImage3, 700, 0, 195, 120, 85, 5, 195 * 1.25, 103 * 1.25);//top left 
 });
 
 const UIImage4 = new Image();
 UIImage4.src = "feature_preview_texture1_level1.png";
+
+const UIImage5 = new Image();
+UIImage5.src = "menu_texture0_level1.png";
+
+const UIImage6 = new Image();
+UIImage6.src = "skin_texture2_level1.png";
+
 UIImage4.addEventListener('load', ()=>{
-    canvasUI.getContext('2d').drawImage(UIImage4, 290, 557, 270, 560, 1180, 160, 270 * 1.4, 560 * 1.4);
-    canvasUI.getContext('2d').drawImage(UIImage4, 280, 410, 940, 150, 1150, 700, 940 * 1.4, 150 * 1.4);
+    canvasUI.getContext('2d').drawImage(UIImage4, 290, 557, 270, 560, 1180, 100, 270 * 1.4, 560 * 1.4);//hero
+    canvasUI.getContext('2d').drawImage(UIImage4, 280, 410, 940, 150, 1000, 650, 940 * 1.6, 150 * 1.6);//clif
     UIImage5.addEventListener('load', ()=>{
         canvasUI.getContext('2d').drawImage(UIImage5, 0, 115, 1020, 109, 150, 735, 1020 * 1.25, 109 * 1.25);//UI BET
         drawSpin();
         //drawHoverSpin();
         canvasUI.getContext('2d').drawImage(UIImage5, 1060, 0, 70, 75, 1292, 785, 70 * 1.25, 75 * 1.25);//auto button
         canvasUI.getContext('2d').drawImage(UIImage5, 1210, 0, 70, 75, 182, 785, 70 * 1.25, 75 * 1.25);//info button
-        //canvasUI.getContext('2d').drawImage(UIImage5, 280, 410, 940, 150, 1150, 700, 940 * 1.4, 150 * 1.4);
+
+        canvasUI.getContext('2d').drawImage(UIImage5, 1024, 160, 33, 45, 982, 802, 33 * 1.4, 45 * 1.4);//right
+        canvasUI.getContext('2d').drawImage(UIImage5, 1180, 160, 33, 45, 525, 802, 33 * 1.4, 45 * 1.4);//left
+        const buttonZoomX = 1.20, buttonZoomY = 1.35;
+        canvasUI.getContext('2d').drawImage(UIImage5, 1340, 174, 71, 42, 733, 803, 71 * buttonZoomX, 42 * (buttonZoomY - 0.1));//center
+        canvasUI.getContext('2d').drawImage(UIImage5, 1400, 0, 71, 42, 650, 804, 71 * buttonZoomX, 42 * buttonZoomY);//center left
+        canvasUI.getContext('2d').drawImage(UIImage5, 1400, 0, 71, 42, 568, 804, 71 * buttonZoomX, 42 * buttonZoomY);//center left
+
+        canvasUI.getContext('2d').drawImage(UIImage5, 1400, 0, 71, 42, 815, 804, 71 * buttonZoomX, 42 * buttonZoomY);//center right
+        canvasUI.getContext('2d').drawImage(UIImage5, 1400, 0, 71, 42, 897, 804, 71 * buttonZoomX, 42 * buttonZoomY);//center right
+    });
+    UIImage6.addEventListener('load', ()=>{
+        canvasUI.getContext('2d').drawImage(UIImage6, 545, 255, 250, 115, 1200, 580, 250 * 1.25, 115 * 1.25);//bonus path
     });
 });
 
-const UIImage5 = new Image();
-UIImage5.src = "menu_texture0_level1.png";
 
 
 
@@ -154,7 +171,7 @@ function drawSpin(){
   canvasUI.getContext('2d').drawImage(UIImage5, 414, 0, 100, 110, 1165, 745, 100 * 1.25, 110 * 1.25);//spin button
 }
 function drawSpinHover(){
-  canvasUI.getContext('2d').drawImage(UIImage5, 518, 0, 100, 110, 1165, 745, 100 * 1.25, 110 * 1.25);//spin button  
+  canvasUI.getContext('2d').drawImage(UIImage5, 518, 0, 100, 110, 1165, 745, 100 * 1.25, 110 * 1.25);//spin hover button  
 }
 
 
