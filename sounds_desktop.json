@@ -1,0 +1,529 @@
+{
+    "soundBufferId": "sounds",
+    "files": {
+        "ogg": {
+            "url": "sounds_desktop.ogg",
+            "size": 5030600
+        },
+        "mp3": {
+            "url": "sounds_desktop.mp3",
+            "size": 5727787
+        },
+        "fb": {
+            "url": "sounds_desktop_fb.mp3",
+            "size": 4163499
+        }
+    },
+    "sounds": {
+        "empty": {
+            "start": 0,
+            "end": 22050,
+            "unique": false,
+            "priority": 0
+        },
+        "bgAmbience": {
+            "start": 44100,
+            "end": 1076685,
+            "unique": true,
+            "priority": 1
+        },
+        "bgStem1": {
+            "start": 1120785,
+            "end": 2153370,
+            "unique": true,
+            "priority": 1
+        },
+        "bgStem2": {
+            "start": 2197470,
+            "end": 3230055,
+            "unique": true,
+            "priority": 1
+        },
+        "bgStem3": {
+            "start": 3274155,
+            "end": 4306740,
+            "unique": true,
+            "priority": 1
+        },
+        "bgStem4": {
+            "start": 4350840,
+            "end": 5383425,
+            "unique": true,
+            "priority": 1
+        },
+        "land1": {
+            "start": 5427525,
+            "end": 5462330,
+            "unique": false,
+            "priority": 0
+        },
+        "land2": {
+            "start": 5506430,
+            "end": 5542613,
+            "unique": false,
+            "priority": 0
+        },
+        "land3": {
+            "start": 5586713,
+            "end": 5624369,
+            "unique": false,
+            "priority": 0
+        },
+        "drop1": {
+            "start": 5668469,
+            "end": 5697622,
+            "unique": false,
+            "priority": 0
+        },
+        "drop2": {
+            "start": 5741722,
+            "end": 5755781,
+            "unique": false,
+            "priority": 0
+        },
+        "drop3": {
+            "start": 5799881,
+            "end": 5815591,
+            "unique": false,
+            "priority": 0
+        },
+        "symbolRemove1": {
+            "start": 5859691,
+            "end": 5945555,
+            "unique": false,
+            "priority": 0
+        },
+        "symbolRemove2": {
+            "start": 5989655,
+            "end": 6072080,
+            "unique": false,
+            "priority": 0
+        },
+        "symbolRemove3": {
+            "start": 6116180,
+            "end": 6196333,
+            "unique": false,
+            "priority": 0
+        },
+        "roundStart": {
+            "start": 6240433,
+            "end": 6291342,
+            "unique": false,
+            "priority": 0
+        },
+        "freespinTransition": {
+            "start": 6335442,
+            "end": 6740731,
+            "unique": true,
+            "priority": 1
+        },
+        "freespinTheme": {
+            "start": 6784831,
+            "end": 7705178,
+            "unique": true,
+            "priority": 1
+        },
+        "freespinIntro": {
+            "start": 7749278,
+            "end": 7964651,
+            "unique": false,
+            "priority": 0
+        },
+        "freespinSummary": {
+            "start": 8008751,
+            "end": 8206957,
+            "unique": false,
+            "priority": 0
+        },
+        "backgroundTransition": {
+            "start": 8251057,
+            "end": 8360703,
+            "unique": false,
+            "priority": 0
+        },
+        "cymbalswell": {
+            "start": 8404803,
+            "end": 8688746,
+            "unique": false,
+            "priority": 0
+        },
+        "drumhit": {
+            "start": 8732846,
+            "end": 8895290,
+            "unique": false,
+            "priority": 0
+        },
+        "drumroll": {
+            "start": 8939390,
+            "end": 9025438,
+            "unique": false,
+            "priority": 0
+        },
+        "markerCollect1": {
+            "start": 9069538,
+            "end": 9140060,
+            "unique": false,
+            "priority": 0
+        },
+        "markerCollect2": {
+            "start": 9184160,
+            "end": 9229738,
+            "unique": false,
+            "priority": 0
+        },
+        "markerCollect3": {
+            "start": 9273838,
+            "end": 9334226,
+            "unique": false,
+            "priority": 0
+        },
+        "symbolTurnWild": {
+            "start": 9378326,
+            "end": 9408865,
+            "unique": false,
+            "priority": 0
+        },
+        "destruction_Surtr1": {
+            "start": 9452965,
+            "end": 9577761,
+            "unique": false,
+            "priority": 0
+        },
+        "destruction_Surtr2": {
+            "start": 9621861,
+            "end": 9756776,
+            "unique": false,
+            "priority": 0
+        },
+        "destruction_Surtr3": {
+            "start": 9800876,
+            "end": 9954750,
+            "unique": false,
+            "priority": 0
+        },
+        "destruction_Fenrir": {
+            "start": 9998850,
+            "end": 10144120,
+            "unique": false,
+            "priority": 0
+        },
+        "destruction_Jormun": {
+            "start": 10188220,
+            "end": 10368808,
+            "unique": false,
+            "priority": 0
+        },
+        "destruction_Jormun_RemoveSymbols": {
+            "start": 10412908,
+            "end": 10498626,
+            "unique": false,
+            "priority": 0
+        },
+        "destruction_Loki1": {
+            "start": 10542726,
+            "end": 10708840,
+            "unique": false,
+            "priority": 0
+        },
+        "destruction_Loki2": {
+            "start": 10752940,
+            "end": 10939847,
+            "unique": false,
+            "priority": 0
+        },
+        "levelPopup_show": {
+            "start": 10983947,
+            "end": 11248037,
+            "unique": false,
+            "priority": 0
+        },
+        "levelPopup_engrave": {
+            "start": 11292137,
+            "end": 11366186,
+            "unique": false,
+            "priority": 0
+        },
+        "levelPopup_hide": {
+            "start": 11410286,
+            "end": 11444188,
+            "unique": false,
+            "priority": 0
+        },
+        "gridMessage_levelup": {
+            "start": 11488288,
+            "end": 11657643,
+            "unique": true,
+            "priority": 0
+        },
+        "gridMessage_default": {
+            "start": 11701743,
+            "end": 11874409,
+            "unique": true,
+            "priority": 0
+        },
+        "chargeMeter1": {
+            "start": 11918509,
+            "end": 12017816,
+            "unique": true,
+            "priority": 0
+        },
+        "chargeMeter2": {
+            "start": 12061916,
+            "end": 12184810,
+            "unique": true,
+            "priority": 0
+        },
+        "chargeLevelUp": {
+            "start": 12228910,
+            "end": 12381339,
+            "unique": false,
+            "priority": 0
+        },
+        "chargePowerDown": {
+            "start": 12425439,
+            "end": 12497345,
+            "unique": false,
+            "priority": 0
+        },
+        "chargeSpinLoop": {
+            "start": 12541445,
+            "end": 12586756,
+            "unique": false,
+            "priority": 0
+        },
+        "chargeSpinBlast1": {
+            "start": 12630856,
+            "end": 12689274,
+            "unique": false,
+            "priority": 0
+        },
+        "chargeSpinBlast2": {
+            "start": 12733374,
+            "end": 12775230,
+            "unique": false,
+            "priority": 0
+        },
+        "chargeSpinClose": {
+            "start": 12819330,
+            "end": 12869797,
+            "unique": false,
+            "priority": 0
+        },
+        "chargeMeterFreeround": {
+            "start": 12913897,
+            "end": 13289743,
+            "unique": true,
+            "priority": 0
+        },
+        "chargeMultiplierFreeround": {
+            "start": 13333843,
+            "end": 13406860,
+            "unique": false,
+            "priority": 0
+        },
+        "god_Thor": {
+            "start": 13450960,
+            "end": 13648762,
+            "unique": true,
+            "priority": 0
+        },
+        "god_Odin": {
+            "start": 13692862,
+            "end": 13988967,
+            "unique": true,
+            "priority": 0
+        },
+        "god_Odin_Highlight": {
+            "start": 14033067,
+            "end": 14131012,
+            "unique": false,
+            "priority": 0
+        },
+        "god_Freya": {
+            "start": 14175112,
+            "end": 14386064,
+            "unique": true,
+            "priority": 0
+        },
+        "god_Heimdall": {
+            "start": 14430164,
+            "end": 14815575,
+            "unique": true,
+            "priority": 0
+        },
+        "god_Start": {
+            "start": 14859675,
+            "end": 15055162,
+            "unique": false,
+            "priority": 0
+        },
+        "god_Wingflap1": {
+            "start": 15099262,
+            "end": 15221951,
+            "unique": false,
+            "priority": 0
+        },
+        "god_Wingflap2": {
+            "start": 15266051,
+            "end": 15383468,
+            "unique": false,
+            "priority": 0
+        },
+        "god_Transition_Thor": {
+            "start": 15427568,
+            "end": 15703669,
+            "unique": false,
+            "priority": 0
+        },
+        "god_Transition_Odin": {
+            "start": 15747769,
+            "end": 15964880,
+            "unique": false,
+            "priority": 0
+        },
+        "god_Transition_Freya": {
+            "start": 16008980,
+            "end": 16244206,
+            "unique": false,
+            "priority": 0
+        },
+        "god_Transition_Heimdall": {
+            "start": 16288306,
+            "end": 16603281,
+            "unique": false,
+            "priority": 0
+        },
+        "god_Transition_Main": {
+            "start": 16647381,
+            "end": 16817029,
+            "unique": false,
+            "priority": 0
+        },
+        "win1": {
+            "start": 16861129,
+            "end": 17004439,
+            "unique": false,
+            "priority": 0
+        },
+        "win2": {
+            "start": 17048539,
+            "end": 17242015,
+            "unique": false,
+            "priority": 0
+        },
+        "win3": {
+            "start": 17286115,
+            "end": 17573841,
+            "unique": false,
+            "priority": 0
+        },
+        "win4": {
+            "start": 17617941,
+            "end": 17883574,
+            "unique": false,
+            "priority": 0
+        },
+        "win5": {
+            "start": 17927674,
+            "end": 18186437,
+            "unique": false,
+            "priority": 0
+        },
+        "win6": {
+            "start": 18230537,
+            "end": 18468681,
+            "unique": false,
+            "priority": 0
+        },
+        "win7": {
+            "start": 18512781,
+            "end": 18798656,
+            "unique": false,
+            "priority": 0
+        },
+        "win8": {
+            "start": 18842756,
+            "end": 19126791,
+            "unique": false,
+            "priority": 0
+        },
+        "win9": {
+            "start": 19170891,
+            "end": 19479899,
+            "unique": false,
+            "priority": 0
+        },
+        "win10": {
+            "start": 19523999,
+            "end": 20009271,
+            "unique": false,
+            "priority": 0
+        },
+        "bonusWheel_add": {
+            "start": 20053371,
+            "end": 20110153,
+            "unique": false,
+            "priority": 0
+        },
+        "bonusWheel_appear": {
+            "start": 20154253,
+            "end": 20244125,
+            "unique": false,
+            "priority": 0
+        },
+        "bonusWheel_spin": {
+            "start": 20288225,
+            "end": 20529189,
+            "unique": false,
+            "priority": 0
+        },
+        "bonusWheel_end": {
+            "start": 20573289,
+            "end": 20734654,
+            "unique": false,
+            "priority": 0
+        },
+        "bigwinTrigger": {
+            "start": 20778754,
+            "end": 21167019,
+            "unique": false,
+            "priority": 0
+        },
+        "bigwinEnd": {
+            "start": 21211119,
+            "end": 21595398,
+            "unique": false,
+            "priority": 0
+        },
+        "bigwinLevelup": {
+            "start": 21639498,
+            "end": 22027728,
+            "unique": false,
+            "priority": 0
+        },
+        "bigwinLevel1": {
+            "start": 22071828,
+            "end": 22246770,
+            "unique": true,
+            "priority": 1
+        },
+        "bigwinLevel2": {
+            "start": 22290870,
+            "end": 22465812,
+            "unique": true,
+            "priority": 1
+        },
+        "bigwinLevel3": {
+            "start": 22509912,
+            "end": 22684854,
+            "unique": true,
+            "priority": 1
+        },
+        "bigwinLevel4": {
+            "start": 22728954,
+            "end": 22903897,
+            "unique": true,
+            "priority": 1
+        }
+    }
+}
