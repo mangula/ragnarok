@@ -8,7 +8,7 @@ const cols = rows;
 const height = 900, width = 1600;
 const zoom = 1.75;
 const rockBlanks = 2;
-const gravity = 1;
+const gravity = 3;
 canvasGame.height = height;
 canvasGame.width = width;
 
@@ -19,7 +19,7 @@ canvasGrid.height = gridHeight;
 canvasGrid.width = gridWidth;
 
 const reelStrips = Array(rows * 2 + rockBlanks).fill(1).map(a=>Array(cols).fill(0));
-
+const stripBool = Array(rows * 2 + rockBlanks).fill(1).map(a=>Array(cols).fill(0));
 const symbolsPositionsY = Array(rows * 2 + rockBlanks).fill(1).map(a=>Array(cols).fill(0));;
 
 function addNewSymbols(){
@@ -90,6 +90,23 @@ image.addEventListener('load', () => {
    }
 });
 
+function animateSymbol(col, row){
+    let velocity = 0;
+    let limit = cellHeight * (rows + rockBlanks);
+    let interval = setInterval(()=>{
+        velocity += gravity;
+        symbolsPositionsY[row][col] += velocity;
+        
+        //symbolsPositionsY[col][row]
+        limit -= velocity;
+        if (limit <= 0) {
+            symbolsPositionsY[row][col] += limit;
+            clearInterval(interval);
+            symbolsDropped++;
+        };
+        //drawSymbols();
+    }, 33);
+}
 
 canvasGame.addEventListener('mousemove', (event) => {
     //console.log(event.x, event.y)
@@ -144,15 +161,50 @@ function drawSymbols(){
     }
 }
 
+
+
+function animateSymbolTimeout(row, col, time){
+    setTimeout(()=>{
+        //console.log(col,row);
+        stripBool[row][col] = 1;
+        animateSymbol(col, row);
+    }, time);
+}
+
 let symbolsDropped = 0
 function animateDrop(){
     symbolsDropped = 0;
     
-    for (let c = 0; c < cols; c++) {
-        for(let r = 0; r < rows * 2 + rockBlanks; r++){
-            //setTimeout();
-            animateSymbol(c, r);
+    let eko = 0;
+    //if(0)
+    for(let r = rows * 2 + rockBlanks; r--;){
+        //const cLimit = 0;
+        for (let c=0; c<cols; c++) {
+            const row = c + r;
+            if (row >= rows * 2 + rockBlanks) {
+              break;
+            }
+
+            animateSymbolTimeout(row, c, eko * 20);
         }
+        eko++;
+    }
+    //if(0)
+    for (let c = 1; c < cols; c++) {
+        let col = c;
+
+            console.log(c);
+        for(let r = 0; r < cols; r++, col++){
+            const row = r;
+            if (row >= rows * 2 + rockBlanks || col >= cols) {
+              break;
+            }
+
+            animateSymbolTimeout(row, col, eko * 20);
+            
+            
+        }
+        eko++;
     }
     
     let interval = setInterval(()=>{
@@ -160,28 +212,12 @@ function animateDrop(){
         if (symbolsDropped == (rows * 2 + rockBlanks) * cols) {
             clearInterval(interval);
             console.log('ALL SYMBOLS DROPPED');
+            console.log(stripBool.map(a=>a.join(' ')).join('\n'));
         }
     }, 33);
     
 }
 
-function animateSymbol(col, row){
-    let velocity = 0;
-    let limit = cellHeight * (rows + rockBlanks);
-    let interval = setInterval(()=>{
-        velocity += gravity;
-        symbolsPositionsY[row][col] += velocity;
-        
-        //symbolsPositionsY[col][row]
-        limit -= velocity;
-        if (limit <= 0) {
-            symbolsPositionsY[row][col] += limit;
-            clearInterval(interval);
-            symbolsDropped++;
-        };
-        //drawSymbols();
-    }, 33);
-}
 
 setTimeout(()=>{
     animateDrop();
