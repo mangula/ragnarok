@@ -164,6 +164,7 @@ UIImage4.addEventListener('load', ()=>{
     });
     UIImage6.addEventListener('load', ()=>{
         ctxUI.drawImage(UIImage6, 545, 255, 250, 115, 1200, 580, 250 * 1.25, 115 * 1.25);//bonus path
+        ctxUI.drawImage(UIImage6, 600, 925, 100, 100, 1439, 582, 100 * 0.5, 100 * 0.5);//bonus circle
         drawBonusPath();
     });
     UIImage7.addEventListener('load', ()=>{
