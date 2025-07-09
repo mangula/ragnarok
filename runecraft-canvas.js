@@ -384,14 +384,27 @@ function drawPath(){
 }
 
 function drawBonusPath(){
-  //return;
-  for (let r=0; r<rows; r++) {
-      for (let c=0; c<cols; c++) {
-          //path[r][c] == 2 && ctxGame.drawImage(UIImage7, 224, 23, 95, 95, c * cellHeight - 12, r * cellHeight - 10, 90 * 1.4, 95 * 1.4);
-          //path[r][c] == 1 && ctxUI.drawImage(UIImage7, 380, 50, 50, 50, c * cellHeight - 12, r * cellHeight - 10, 90 * 1.4, 95 * 1.4);
-          ctxUI.drawImage(UIImage7, 380, 50, 5, 5, c * cellHeight - 12, r * cellHeight - 10, 5, 5);
-      }
-  }   
+    const miniCellHeight = 10, miniCellBorder = 2;
+    let targetImage, x, y;
+     for (let r=0; r<rows; r++) {
+         for (let c=0; c<cols; c++) {
+             
+             if (path[r][c] == 0) {
+                 targetImage = UIImage7;
+                 x = 224;
+                 y = 23;
+             } else if (path[r][c] == 2) {
+                 targetImage = UIImage6;
+                 x = 1120;
+                 y = 60;
+             } else {
+                 targetImage = image;
+                 x = 240;
+                 y = 270;
+             }
+             ctxUI.drawImage(targetImage, x, y, miniCellHeight, miniCellHeight, 1223 + c * (miniCellHeight + miniCellBorder), 598 + r * (miniCellHeight + miniCellBorder), miniCellHeight, miniCellHeight);                  
+         }
+     }   
 }
 
 function resetPath() {
@@ -403,3 +416,36 @@ function resetPath() {
     pathLevel = (pathLevel + 1) % paths.length;
     path = paths[pathLevel];
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
